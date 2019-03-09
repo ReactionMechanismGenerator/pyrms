@@ -3,8 +3,6 @@ os:
   - linux
 python:
     - "2.7"
-stages:
-    - test
 before_install:
   - mkdir -p ~/Downloads
 
@@ -25,10 +23,5 @@ before_install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH=$HOME/miniconda/bin:$PATH
 
-jobs:
-  include:
-    -stage: test
-      install:
-        cd pyrms
-      script:
-        -make test
+script:
+  - make test

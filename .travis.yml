@@ -3,6 +3,8 @@ os:
   - linux
 python:
     - "2.7"
+stages:
+    - test
 before_install:
   - mkdir -p ~/Downloads
 

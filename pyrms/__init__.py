@@ -8,4 +8,4 @@ def install():
     """
     Install Julia packages required for pyrms.
     """
-subprocess.check_call(['julia', os.path.join(script_dir, 'install.jl')])
+    subprocess.check_call(['julia', os.path.join(script_dir, 'install.jl')])

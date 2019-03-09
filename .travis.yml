@@ -22,7 +22,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then wget http://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh; fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH=$HOME/miniconda/bin:$PATH
-  - pip install julia
-  - conda install nose
+  - python2 -m pip install julia
 script:
   - nosetests pyrms/rmsTest.py

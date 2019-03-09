@@ -6,7 +6,7 @@ os:
 python:
     - "2.7"
 notifications:
-  email: false
+  email: true
 before_install:
   - mkdir -p ~/Downloads
 

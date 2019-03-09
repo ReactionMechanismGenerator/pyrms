@@ -23,5 +23,6 @@ before_install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH=$HOME/miniconda/bin:$PATH
   - pip install julia
+  - conda install nose
 script:
   - nosetests pyrms/rmsTest.py

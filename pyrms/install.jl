@@ -3,7 +3,8 @@ using Pkg
 pyout = Pipe()
 proc1 = run(pipeline(`python -V`,stdout=pyout))
 close(pyout.in)
-pyversion = chomp(String(read(out)))
+pyversion = chomp(String(read(pyout)))
+println("python version: $pyversion")
 
 #get the python path
 if !("PyCall" in keys(Pkg.installed()))

@@ -27,6 +27,10 @@ before_install:
 
   - conda create -n conda_jl --yes python conda
   - source activate conda_jl
+
+  - echo "conda path is"
+  - echo | which conda
+
   - conda update --yes conda
   - conda install -c rmg --yes rmg
   - conda install -c rmg --yes rdkit

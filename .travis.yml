@@ -5,8 +5,6 @@ os:
   - linux
 python:
     - "2.7"
-notifications:
-  email: true
 before_install:
   - mkdir -p ~/Downloads
 
@@ -22,14 +20,15 @@ before_install:
   - rm -rf ~/Downloads/julia*
   - export PATH="$HOME/julia/bin:$PATH"
 
-  - pip install --quiet tox-travis
-script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then wget http://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh; fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH=$HOME/miniconda/bin:$PATH
 
-  # Create an environment first so that we know what to use for $PYTHON:
-  - tox --notest
-
-  # PyCall requires to know the right Python executable to use:
-  - export PYTHON="$(echo $PWD/.tox/py*/bin/python)"
-  - echo "$PYTHON"
-
-- tox -- --cov pyrms
+jobs:
+  include:
+    -stage: test
+      install:
+        cd pyrms
+      script:
+        -make test

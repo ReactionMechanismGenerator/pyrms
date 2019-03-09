@@ -1,0 +1,2 @@
+import pyrms
+pyrms.install()

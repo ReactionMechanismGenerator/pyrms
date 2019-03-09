@@ -38,4 +38,5 @@ before_install:
   - python2 -m pip install julia
 
 script:
+  - python travis-install.py
   - nosetests pyrms/rmsTest.py

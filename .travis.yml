@@ -27,15 +27,15 @@ before_install:
 
   - conda create -n conda_jl --yes python conda
   - source activate conda_jl
+  - conda update --yes conda
+  - conda install -c rmg --yes rmg
+  - conda install -c rmg --yes rdkit
+  - conda install --yes pydot
+  - conda install --yes yaml
 
   - julia -e 'using Pkg; Pkg.add("PyCall"); Pkg.build("PyCall");'
 
   - python2 -m pip install julia
 
-  - conda install -c rmg --yes rmg
-  - conda install -c rmg --yes rdkit
-  - conda install --yes pydot
-  - conda install --yes yaml
-  - conda update --yes conda
 script:
   - nosetests pyrms/rmsTest.py

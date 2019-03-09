@@ -23,7 +23,5 @@ before_install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH=$HOME/miniconda/bin:$PATH
   - pip install julia
-  - pip install unittests
-  - pip install math
 script:
   - make test

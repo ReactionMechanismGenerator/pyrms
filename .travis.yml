@@ -40,9 +40,8 @@ before_install:
   - julia -e 'using Pkg; Pkg.add("PyCall"); Pkg.build("PyCall");'
 
   - python2 -m pip install julia
+  - pip install diffeqpy
 
 script:
-  - echo "conda path is"
-  - echo | which conda
   - python travis-install.py
   - nosetests pyrms/rmsTest.py

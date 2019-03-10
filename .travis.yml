@@ -45,5 +45,5 @@ before_install:
 
 script:
   - python travis-install.py
-  - pwd
+  - cd pyrms
   - nosetests pyrms/rmsTest.py

@@ -56,3 +56,8 @@ docs/_build/
 
 # PyBuilder
 target/
+
+#flux diagrams
+*.png
+*.dot
+*.svg

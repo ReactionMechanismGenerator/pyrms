@@ -1,6 +1,5 @@
 import os
 import sys
-import importlib
 from IPython.display import Image
 import IPython.display
 

@@ -36,6 +36,7 @@ before_install:
   - conda install -c rmg --yes rdkit
   - conda install --yes pydot
   - conda install --yes yaml
+  - conda install --yes ipython
 
   - julia -e 'using Pkg; Pkg.add("PyCall"); Pkg.build("PyCall");'
 

@@ -15,6 +15,6 @@ if !("PyCall" in keys(Pkg.installed()))
     run(`python2 -m pip install julia`)
 end
 
-Pkg.add("ReactionMechanismSimulator#master")
+Pkg.develop(PackageSpec(url="https://github.com/ReactionMechanismGenerator/ReactionMechanismSimulator.jl"))
 using PyCall
 using ReactionMechanismSimulator

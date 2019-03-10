@@ -16,5 +16,6 @@ if !("PyCall" in keys(Pkg.installed()))
 end
 
 Pkg.add("ReactionMechanismSimulator")
+Pkg.checkout("ReactionMechanismSimulator")
 using PyCall
 using ReactionMechanismSimulator

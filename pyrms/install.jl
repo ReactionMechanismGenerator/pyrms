@@ -1,11 +1,5 @@
 using Pkg
 
-pyout = Pipe()
-proc1 = run(pipeline(`python -V`,stdout=pyout))
-close(pyout.in)
-pyversion = chomp(String(read(pyout)))
-println("python version: $pyversion")
-
 #get the python path
 if !("PyCall" in keys(Pkg.installed()))
     out = Pipe()
@@ -18,6 +12,7 @@ if !("PyCall" in keys(Pkg.installed()))
     ENV["PYTHON"] = pypath
     Pkg.add("PyCall")
     Pkg.build("PyCall")
+    run(`python2 -m pip install julia`)
 end
 
 Pkg.add("ReactionMechanismSimulator")

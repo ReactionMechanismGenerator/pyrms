@@ -3,19 +3,7 @@ import os
 from distutils.spawn import find_executable
 
 #check rmgpy
-os.system("conda install -c rmg rmg")
-
-print("appending pyrms to path")
-path=os.getcwd()
-homepath = os.getenv("HOME")
-ostype = os.getenv("OSTYPE")
-if "darwin" in ostype:
-    bpath = os.path.join(homepath,".bash_profile")
-else:
-    bpath = os.path.join(homepath,".bashrc")
-st = "#pyrms\nexport PYTHONPATH=$PYTHONPATH:{0}".format(path)
-with open(bpath, 'a') as bfile:
-    bfile.write(s)
+os.system("conda install -c rmg --yes rmg")
 
 julia_path = find_executable("julia")
 if not julia_path:

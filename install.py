@@ -17,7 +17,7 @@ except:
     if x != 'y':
         raise ValueError("stopping install so you can add rmgpy to PYTHONPATH")
     else:
-        os.system("conda install -c rmg rmg")
+        os.system("conda install -c rmg --yes rmg")
 
 append_pyrms = raw_input("Would you like pyrms appended to PYTHONPATH in your .bashrc (linux) .bash_profile (osx)? (recommended) \
               indicate yes with 'y'")

@@ -19,16 +19,12 @@ with open(bpath, 'a') as bfile:
 
 julia_path = find_executable("julia")
 if not julia_path:
-    install_julia = input("julia not appended to path, do you want pyrms to install julia?  indicate yes iwth 'y'")
     if True:
         julia_install_path = ""
         if julia_install_path == "":
             julia_install_path = os.path.join(os.getenv("HOME"),"julia","bin")
         elif not os.path.isfile(julia_install_path):
             raise ValueError("Julia path invalid")
-
-        append_julia = raw_input("Would you like julia appended to path in your .bashrc (linux) .bash_profile (osx)? (recommended)\
-                      indicate yes with 'y'"")
 
         #install julia
         if os.environ("OSTYPE") == "linux-gnu":

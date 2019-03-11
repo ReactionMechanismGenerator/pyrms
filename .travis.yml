@@ -44,7 +44,7 @@ before_install:
   # - pip install diffeqpy
 
 script:
-  - make install
+  - make install-travis
   # - python travis-install.py
   # - cd pyrms
   # - nosetests rmsTest.py

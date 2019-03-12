@@ -41,7 +41,16 @@ install:
 	nosetests pyrms/rmsTest.py
 
 install-travis:
-	python install-travis.py
+	mkdir -p ~/Downloads
+	if [ "$TRAVIS_OS_NAME" == "linux" ]; then curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz"; fi
+	if [ "$TRAVIS_OS_NAME" == "linux" ]; then tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads"; fi
+	if [ "$TRAVIS_OS_NAME" == "linux" ]; then cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "$HOME/julia"; fi
+	if [ "$TRAVIS_OS_NAME" == "osx" ]; then curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.0/julia-1.0.1-mac64.dmg -o "$HOME/Downloads/julia.dmg"; fi
+	if [ "$TRAVIS_OS_NAME" == "osx" ]; then hdiutil attach ~/Downloads/julia.dmg; fi
+	if [ "$TRAVIS_OS_NAME" == "osx" ]; then cp -r /Volumes/Julia*/Julia*/Contents/Resources/julia $HOME/julia; fi
+	if [ "$TRAVIS_OS_NAME" == "osx" ]; then hdiutil detach -force /Volumes/Julia*; fi
+	rm -rf ~/Downloads/julia*
+	export PATH="$HOME/julia/bin:$PATH"
 
 	conda install --yes yaml
 	conda install --yes ipython

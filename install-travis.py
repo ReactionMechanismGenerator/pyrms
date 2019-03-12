@@ -30,17 +30,4 @@ if not julia_path:
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(os.path.join(julia_install_path,'julia')))
 
-        if True:
-            print("appending julia to path julia")
-            homepath = os.getenv("HOME")
-            ostype = os.getenv("OSTYPE")
-            if ostype and "darwin" in ostype:
-                bpath = os.path.join(homepath,".bash_profile")
-            else:
-                bpath = os.path.join(homepath,".bashrc")
-            st = "export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
-            os.system(st)
-        else:
-            raise ValueError("Cannot continue installation without appending julia to path")
-    else:
-        raise ValueError("append your julia executable to path")
+        os.system("export PATH="$HOME/julia/bin:$PATH"")

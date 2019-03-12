@@ -30,4 +30,4 @@ if not julia_path:
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(os.path.join(julia_install_path,'julia')))
 
-        os.system("export PATH="$HOME/julia/bin:$PATH"")
+        os.system("export PATH=\"$HOME/julia/bin:$PATH\"")

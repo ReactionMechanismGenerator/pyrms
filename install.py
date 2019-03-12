@@ -73,7 +73,7 @@ if not julia_path:
             else:
                 bpath = os.path.join(homepath,".bashrc")
             st = "#julia\nexport PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
-            with open(bpath, 'a') as bfile:
+            with open(bpath, 'w') as bfile:
                 bfile.write(s)
         else:
             raise ValueError("Cannot continue installation without appending julia to path")

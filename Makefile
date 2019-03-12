@@ -30,7 +30,7 @@ install:
 
 
 	#install PyCall properly and install ReactionMechanismSimulator
-	julia -e pyrms/install.jl
+	julia pyrms/install.jl
 
 	#install julia-python modules
 	python2 -m pip install julia
@@ -49,7 +49,7 @@ install-travis:
 	conda install --yes setuptools
 
 	#install PyCall properly and install ReactionMechanismSimulator
-	julia -e pyrms/install.jl
+	julia pyrms/install.jl
 
 	#install julia-python modules
 	python2 -m pip install julia

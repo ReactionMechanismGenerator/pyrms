@@ -34,7 +34,7 @@ if not julia_path:
             print("appending julia to path julia")
             homepath = os.getenv("HOME")
             ostype = os.getenv("OSTYPE")
-            if "darwin" in ostype:
+            if ostype and "darwin" in ostype:
                 bpath = os.path.join(homepath,".bash_profile")
             else:
                 bpath = os.path.join(homepath,".bashrc")

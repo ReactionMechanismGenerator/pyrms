@@ -37,7 +37,7 @@ if append_pyrms  == 'y':
 
 julia_path = find_executable("julia")
 if not julia_path:
-    install_julia = input("julia not appended to path, do you want pyrms to install julia?  indicate yes iwth 'y'")
+    install_julia = input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'")
     if install_julia == 'y':
         julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME")
         if not julia_install_path:
@@ -68,7 +68,7 @@ if not julia_path:
             print("appending julia to path julia")
             homepath = os.getenv("HOME")
             ostype = os.getenv("OSTYPE")
-            if "darwin" in ostype:
+            if ostype and "darwin" in ostype:
                 bpath = os.path.join(homepath,".bash_profile")
             else:
                 bpath = os.path.join(homepath,".bashrc")

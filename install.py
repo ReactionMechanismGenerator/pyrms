@@ -37,7 +37,7 @@ if append_pyrms  == 'y':
 
 julia_path = find_executable("julia")
 if not julia_path:
-    install_julia = input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'")
+    install_julia = raw_input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'")
     if install_julia == 'y':
         julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME")
         if not julia_install_path:

@@ -7,7 +7,7 @@ if !("PyCall" in keys(Pkg.installed()))
     link_python = true
 else
     using PyCall
-    @pyimport sys
+    sys = pyimport("sys")
     v = sys.version_info[1]
     if v != 2
         println("Julia Python version was not Python 2 removing PyCall and reinstalling")

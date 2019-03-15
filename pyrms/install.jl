@@ -6,6 +6,7 @@ if !("PyCall" in keys(Pkg.installed()))
     Pkg.add("PyCall")
     link_python = true
 else
+    println("found PyCall importing")
     using PyCall
     sys = pyimport("sys")
     v = sys.version_info[1]
@@ -18,7 +19,9 @@ else
     end
 end
 
+println("PyCall present")
 if link_python
+    println("Linking PyCall properly")
     out = Pipe()
     proc = run(pipeline(`which python`,stdout=out))
     close(out.in)
@@ -32,6 +35,8 @@ if link_python
     Pkg.build("PyCall")
 end
 
+println("adding RMS")
 Pkg.develop(PackageSpec(url="https://github.com/ReactionMechanismGenerator/ReactionMechanismSimulator.jl"))
+println("importing PyCall and RMS")
 using PyCall
 using ReactionMechanismSimulator

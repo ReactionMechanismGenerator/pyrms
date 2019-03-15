@@ -26,7 +26,7 @@ if append_pyrms  == 'y':
     print("appending pyrms to path")
     path=os.getcwd()
     homepath = os.getenv("HOME")
-    ostype = os.getenv("OSTYPE")
+    ostype = sys.platform
     if "darwin" in ostype:
         bpath = os.path.join(homepath,".bash_profile")
     else:
@@ -49,11 +49,11 @@ if not julia_path:
                       indicate yes with 'y'")
 
         #install julia
-        if os.getenv("OSTYPE") and os.getenv("OSTYPE") == "linux-gnu":
+        if sys.platform and "linux" in sys.platform:
             os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(os.path.join(julia_install_path,'julia')))
-        elif os.getenv("OSTYPE") and "darwin" in os.getenv("OSTYPE"):
+        elif sys.platform and "darwin" in sys.platform:
             os.system("""curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.1/julia-1.1.0-mac64.dmg -o "$HOME/Downloads/julia.dmg";""")
             os.system("""hdiutil attach ~/Downloads/julia.dmg;""")
             os.system("""cp -r /Volumes/Julia*/Julia*/Contents/Resources/julia {0};""".format(os.path.join(julia_install_path,'julia')))
@@ -67,7 +67,7 @@ if not julia_path:
         if append_julia == 'y':
             print("appending julia to path julia")
             homepath = os.getenv("HOME")
-            ostype = os.getenv("OSTYPE")
+            ostype = sys.platform
             if ostype and "darwin" in ostype:
                 bpath = os.path.join(homepath,".bash_profile")
             else:

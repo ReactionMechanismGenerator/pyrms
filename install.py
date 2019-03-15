@@ -33,7 +33,7 @@ if append_pyrms  == 'y':
         bpath = os.path.join(homepath,".bashrc")
     st = "#pyrms\nexport PYTHONPATH=$PYTHONPATH:{0}".format(path)
     with open(bpath, 'a') as bfile:
-        bfile.write(s)
+        bfile.write(st)
 
 julia_path = find_executable("julia")
 if not julia_path:
@@ -74,7 +74,7 @@ if not julia_path:
                 bpath = os.path.join(homepath,".bashrc")
             st = "#julia\nexport PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
             with open(bpath, 'a') as bfile:
-                bfile.write(s)
+                bfile.write(st)
         else:
             raise ValueError("Cannot continue installation without appending julia to path")
     else:

@@ -1,19 +1,35 @@
 using Pkg
 
 #get the python path
+link_python = false
 if !("PyCall" in keys(Pkg.installed()))
     Pkg.add("PyCall")
+    link_python = true
+else
+    using PyCall
+    @pyimport sys
+    v = sys.version_info[1]
+    if v != 2
+        println("Julia Python version was not Python 2 removing PyCall and reinstalling")
+        Pkg.rm("PyCall")
+        Pkg.rm("Conda")
+        Pkg.add("PyCall")
+        link_python = true
+    end
 end
-out = Pipe()
-proc = run(pipeline(`which python`,stdout=out))
-close(out.in)
-pypath = chomp(String(read(out)))
 
-#set env variables for installing PyCall
-ENV["CONDA_JL_HOME"] = join(split(pypath,'/')[2:end-2],'/')
-ENV["PYTHON"] = pypath
+if link_python
+    out = Pipe()
+    proc = run(pipeline(`which python`,stdout=out))
+    close(out.in)
+    pypath = chomp(String(read(out)))
 
-Pkg.build("PyCall")
+    #set env variables for installing PyCall
+    ENV["CONDA_JL_HOME"] = join(split(pypath,'/')[2:end-2],'/')
+    ENV["PYTHON"] = pypath
+
+    Pkg.build("PyCall")
+end
 
 Pkg.develop(PackageSpec(url="https://github.com/ReactionMechanismGenerator/ReactionMechanismSimulator.jl"))
 using PyCall

@@ -37,16 +37,15 @@ if append_pyrms  == 'y':
 
 julia_path = find_executable("julia")
 if not julia_path:
-    install_julia = raw_input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'")
+    install_julia = raw_input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'\n")
     if install_julia == 'y':
-        julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME")
+        julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME \n")
         if not julia_install_path:
             julia_install_path = os.path.join(os.getenv("HOME"))#,"julia","bin")
         elif not os.path.isfile(julia_install_path):
             raise ValueError("Julia path invalid")
 
-        append_julia = raw_input("Would you like julia appended to path in your .bashrc (linux) .bash_profile (osx)? (recommended)\
-                      indicate yes with 'y'")
+        append_julia = raw_input("Would you like julia appended to path in your .bashrc (linux) .bash_profile (osx)? (recommended) indicate yes with 'y'\n")
 
         #install julia
         if sys.platform and "linux" in sys.platform:

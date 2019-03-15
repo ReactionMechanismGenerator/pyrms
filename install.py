@@ -41,7 +41,7 @@ if not julia_path:
     if install_julia == 'y':
         julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME")
         if not julia_install_path:
-            julia_install_path = os.path.join(os.getenv("HOME"),"julia","bin")
+            julia_install_path = os.path.join(os.getenv("HOME"))#,"julia","bin")
         elif not os.path.isfile(julia_install_path):
             raise ValueError("Julia path invalid")
 

@@ -7,6 +7,7 @@ if !("PyCall" in keys(Pkg.installed()))
     link_python = true
 else
     println("found PyCall importing")
+    v = 0
     try
         using PyCall
         sys = pyimport("sys")

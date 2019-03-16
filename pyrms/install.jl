@@ -41,6 +41,8 @@ if link_python
 end
 
 println("adding RMS")
+Pkg.add("DifferentialEquations")
+using DifferentialEquations
 Pkg.develop(PackageSpec(url="https://github.com/ReactionMechanismGenerator/ReactionMechanismSimulator.jl"))
 println("importing PyCall and RMS")
 using PyCall

@@ -6,7 +6,7 @@ from diffeqpy import de
 
 class Testrms(unittest.TestCase):
     def test_simulate(self):
-        phaseDict = rms.readinput("testing/superminimal.rms")
+        phaseDict = rms.readinput("pyrms/testing/superminimal.rms")
         spcs = phaseDict["gas"]["Species"]
         rxns = phaseDict["gas"]["Reactions"]
         ig = rms.IdealGas(spcs,rxns,name="gas")

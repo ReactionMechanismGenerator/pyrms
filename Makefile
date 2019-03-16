@@ -17,6 +17,7 @@ install:
 	python -c "import diffeqpy; diffeqpy.install()"
 
 	#test
-	cd pyrms
-	nosetests rmsTest.py
-	cd ..
+	make test
+
+test:
+	nosetests pyrms/rmsTest.py

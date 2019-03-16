@@ -47,6 +47,5 @@ before_install:
 
 script:
   - python travis-install.py
-  - cd pyrms
-  - julia install.jl
-  - nosetests rmsTest.py
+  - julia pyrms/install.jl
+  - nosetests pyrms/rmsTest.py

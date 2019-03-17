@@ -42,6 +42,8 @@ before_install:
 
   - python2 -m pip install julia
   - pip install diffeqpy
+  - python -c "import diffeqpy; diffeqpy.install()"
+
 
 script:
   - julia install.jl

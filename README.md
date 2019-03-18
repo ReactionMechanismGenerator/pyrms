@@ -14,10 +14,10 @@ In theory this wraps all functionality within RMS with two caveats:
 ## Installation Instructions:  
 
 Note:  
-pyrms currently only supports python 2 so running `python` must open a python 2 kernel.  
-Installing pyrms links/relinks your julia PyCall module to the python 2 being used.  
+  1) pyrms currently only supports python 2 so running `python` must open a python 2 kernel.  
+  2) Installing pyrms links/relinks your julia PyCall module to the python 2 being used.  
 
-Run 
+To Install Run:  
 ```
 git clone https://github.com/ReactionMechanismGenerator/pyrms.git
 cd pyrms

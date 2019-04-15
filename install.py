@@ -32,7 +32,9 @@ if append_pyrms  == 'y':
     else:
         bpath = os.path.join(homepath,".bashrc")
     st = "\n#pyrms\nexport PYTHONPATH=$PYTHONPATH:{0}".format(path)
-    os.system("export PYTHONPATH=$PYTHONPATH:{0}".format(path))
+    s = "export PYTHONPATH=$PYTHONPATH:{0}".format(path)
+    print(s)
+    os.system(s)
     with open(bpath, 'a') as bfile:
         bfile.write(st)
 
@@ -76,7 +78,9 @@ if not julia_path:
             else:
                 bpath = os.path.join(homepath,".bashrc")
             st = "\n#julia\nexport PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
-            os.system("export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin")))
+            s = "export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
+            print(s)
+            os.system(s)
             with open(bpath, 'a') as bfile:
                 bfile.write(st)
         else:

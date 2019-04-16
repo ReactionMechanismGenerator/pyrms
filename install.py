@@ -2,6 +2,9 @@ import sys
 import os
 from distutils.spawn import find_executable
 
+pyrms_string = None
+julia_string = None
+
 #check python version
 t='{v[0]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)
 
@@ -32,9 +35,7 @@ if append_pyrms  == 'y':
     else:
         bpath = os.path.join(homepath,".bashrc")
     st = "\n#pyrms\nexport PYTHONPATH=$PYTHONPATH:{0}".format(path)
-    s = "export PYTHONPATH=$PYTHONPATH:{0}".format(path)
-    print(s)
-    os.system(s)
+    pyrms_string = "export PYTHONPATH=$PYTHONPATH:{0}".format(path)
     with open(bpath, 'a') as bfile:
         bfile.write(st)
 
@@ -78,12 +79,16 @@ if not julia_path:
             else:
                 bpath = os.path.join(homepath,".bashrc")
             st = "\n#julia\nexport PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
-            s = "export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
-            print(s)
-            os.system(s)
+            julia_string = "export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
             with open(bpath, 'a') as bfile:
                 bfile.write(st)
         else:
             raise ValueError("Cannot continue installation without appending julia to path\n")
     else:
         raise ValueError("append your julia executable to path\n")
+
+if pyrms_string:
+    os.system(pyrms_string)
+
+if julia_string:
+    os.system(julia_string)

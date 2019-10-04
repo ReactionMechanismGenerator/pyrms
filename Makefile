@@ -13,6 +13,7 @@ install:
 
 	#install julia-python modules
 	python3 -m pip install julia
+	python -c "import julia; julia.install()"
 	pip install diffeqpy
 	python -c "import diffeqpy; diffeqpy.install()"
 

@@ -16,9 +16,11 @@ else
         v = -1 #PyCall isn't setup right
     end
     if v != 3
-        println("Julia Python version was not Python 3 removing PyCall and reinstalling")
+        println("removing PyCall and reinstalling")
         Pkg.rm("PyCall")
-        Pkg.rm("Conda")
+        if "Conda" in keys(Pkg.installed())
+            Pkg.rm("Conda")
+        end
         Pkg.add("PyCall")
         link_python = true
     end

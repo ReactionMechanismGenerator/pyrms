@@ -15,8 +15,8 @@ else
     catch
         v = -1 #PyCall isn't setup right
     end
-    if v != 2
-        println("Julia Python version was not Python 2 removing PyCall and reinstalling")
+    if v != 3
+        println("Julia Python version was not Python 3 removing PyCall and reinstalling")
         Pkg.rm("PyCall")
         Pkg.rm("Conda")
         Pkg.add("PyCall")

@@ -5,21 +5,22 @@ from distutils.spawn import find_executable
 #check python version
 t='{v[0]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)
 
-if t != '2':
-    raise ValueError("current python is not python 2, pyrms can only be installed on python 2\n")
+if t != '3':
+    raise ValueError("current python is not python 3, pyrms can only be installed on python 3\n")
 
 #check rmgpy
 try:
     import rmgpy
 except:
-    x = raw_input("could not find rmg in PYTHONPATH, if you have rmg installed from source this could be a problem, \
+    x = input("could not find rmg in PYTHONPATH, if you have rmg installed from source this could be a problem, \
                   should we do a binary install? indicate yes with 'y'\n")
     if x != 'y':
         raise ValueError("stopping install so you can add rmgpy to PYTHONPATH\n")
     else:
+        raise ValueError("no rmg binary available currently")
         os.system("conda install -c rmg --yes rmg")
 
-append_pyrms = raw_input("\nWould you like pyrms appended to PYTHONPATH in your .bashrc (linux) .bash_profile (osx)? (recommended) \
+append_pyrms = input("\nWould you like pyrms appended to PYTHONPATH in your .bashrc (linux) .bash_profile (osx)? (recommended) \
               indicate yes with 'y'\n")
 
 if append_pyrms  == 'y':
@@ -37,31 +38,31 @@ if append_pyrms  == 'y':
 
 julia_path = find_executable("julia")
 if not julia_path:
-    install_julia = raw_input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'\n")
+    install_julia = input("julia not appended to path, do you want pyrms to install julia?  indicate yes with 'y'\n")
     if install_julia == 'y':
-        julia_install_path = raw_input("At what absolute path would you like julia installed? blank defaults to $HOME \n")
+        julia_install_path = input("At what absolute path would you like julia installed? blank defaults to $HOME \n")
         if not julia_install_path:
             julia_install_path = os.path.join(os.getenv("HOME"))#,"julia","bin")
         elif not os.path.isfile(julia_install_path):
             raise ValueError("Julia path invalid\n")
 
-        append_julia = raw_input("Would you like julia appended to path in your .bashrc (linux) .bash_profile (osx)? (recommended) indicate yes with 'y'\n")
+        append_julia = input("Would you like julia appended to path in your .bashrc (linux) .bash_profile (osx)? (recommended) indicate yes with 'y'\n")
 
         #install julia
         if sys.platform and "linux" in sys.platform:
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(julia_install_path))
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))
         elif sys.platform and "darwin" in sys.platform:
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.1/julia-1.1.0-mac64.dmg -o "$HOME/Downloads/julia.dmg";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.2/julia-1.2.0-mac64.dmg -o "$HOME/Downloads/julia.dmg";""")
             os.system("""hdiutil attach ~/Downloads/julia.dmg;""")
             os.system("""cp -r /Volumes/Julia*/Julia*/Contents/Resources/julia {0};""".format(julia_install_path))
             os.system("""hdiutil detach -force /Volumes/Julia*;""")
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))
         else:
             print("could not identify OS type attempting linux style install")
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(julia_install_path))
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))
@@ -77,6 +78,7 @@ if not julia_path:
             st = "\n#julia\nexport PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin"))
             with open(bpath, 'a') as bfile:
                 bfile.write(st)
+            os.system("export PATH=\"{0}:$PATH\"".format(os.path.join(homepath,"julia","bin")))
         else:
             raise ValueError("Cannot continue installation without appending julia to path\n")
     else:

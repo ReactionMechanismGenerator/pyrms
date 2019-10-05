@@ -3,11 +3,6 @@
 install:
 	python install.py
 
-	conda install --yes yaml
-	conda install --yes ipython
-	conda install --yes pydot
-	conda install --yes setuptools
-
 	#install PyCall properly and install ReactionMechanismSimulator
 	julia install.jl
 

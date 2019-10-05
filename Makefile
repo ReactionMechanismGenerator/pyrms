@@ -21,6 +21,9 @@ install:
 	pip install diffeqpy
 	python -c "import diffeqpy; diffeqpy.install()"
   
+	#link python in rms_env to python-jl
+	ln -sfn $(which python-jl) $(dirname $(which python-jl))/python
+
 	#test
 	make test
 

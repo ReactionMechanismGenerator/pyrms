@@ -1,14 +1,16 @@
 # Makefile for pyrms
+SHELL := /bin/bash
+UNAME_S := $(shell uname -s)
 
 install:
 	python install.py
   
 	#load added bash_profile and bashrc variables and re source environment
-	if [ "$(uname)" == "Darwin" ]; then
+	ifeq ($(UNAME_S),Darwin)
     source ~/.bash_profile    
-	elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	else
 	  source ~/.bashrc
-	fi
+	endif
 
 	source activate rms_env
 	

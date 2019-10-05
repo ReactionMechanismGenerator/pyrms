@@ -6,11 +6,11 @@ install:
 	python install.py
 	
 	#load added bash_profile and bashrc variables and re source environment
-	ifeq ($(UNAME_S),Darwin)
+ifeq ($(UNAME_S),Darwin)
 	source ~/.bash_profile    
-	else
+else
 	source ~/.bashrc
-	endif
+endif
 	
 	source activate rms_env
 	

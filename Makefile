@@ -13,8 +13,6 @@ else
 	source ~/.bashrc
 endif
 	
-	source activate rms_env
-	
 	#install PyCall properly and install ReactionMechanismSimulator
 	julia install.jl
 	

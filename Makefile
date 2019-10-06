@@ -1,7 +1,6 @@
 # Makefile for pyrms
 SHELL := /bin/bash
 UNAME_S := $(shell uname -s)
-DIR := $(shell dirname $(shell which python-jl))
 
 install:
 	python install.py
@@ -23,7 +22,7 @@ endif
 	python -c "import diffeqpy; diffeqpy.install()"
 	
 	#link python in rms_env to python-jl
-	ln -sfn $(DIR)/python-jl $(DIR)/python
+	ln -sfn $(shell which python-jl) $(shell which python)
 	
 	#test
 	make test

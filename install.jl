@@ -35,7 +35,7 @@ if link_python
     pypath = chomp(String(read(out)))
 
     #set env variables for installing PyCall
-    ENV["CONDA_JL_HOME"] = join("/",join(split(pypath,"/")[2:end-2],"/"))
+    ENV["CONDA_JL_HOME"] = join(split(pypath,"/")[1:end-2],"/")
     ENV["PYTHON"] = pypath
     println(ENV["CONDA_JL_HOME"])
     println(ENV["PYTHON"])

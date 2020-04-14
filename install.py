@@ -50,19 +50,19 @@ if not julia_path:
 
         #install julia
         if sys.platform and "linux" in sys.platform:
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.3/julia-1.3.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(julia_install_path))
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))
         elif sys.platform and "darwin" in sys.platform:
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.2/julia-1.2.0-mac64.dmg -o "$HOME/Downloads/julia.dmg";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/mac/x64/1.3/julia-1.3.0-mac64.dmg -o "$HOME/Downloads/julia.dmg";""")
             os.system("""hdiutil attach ~/Downloads/julia.dmg;""")
             os.system("""cp -r /Volumes/Julia*/Julia*/Contents/Resources/julia {0};""".format(julia_install_path))
             os.system("""hdiutil detach -force /Volumes/Julia*;""")
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))
         else:
             print("could not identify OS type attempting linux style install")
-            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.2/julia-1.2.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
+            os.system("""curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.3/julia-1.3.0-linux-x86_64.tar.gz -o "$HOME/Downloads/julia.tar.gz";""")
             os.system("""tar xzf "$HOME/Downloads/julia.tar.gz" -C "$HOME/Downloads";""")
             os.system("""cp -r "$(find "$HOME/Downloads" -maxdepth 2 -name "julia*" -type d | head -n 1)" "{0}";""".format(julia_install_path))
             os.system("""mv {0} {1}""".format(os.path.join(julia_install_path,"julia*"),os.path.join(julia_install_path,"julia")))

@@ -3,21 +3,17 @@ SHELL := /bin/bash
 UNAME_S := $(shell uname -s)
 
 install:
+	shell install-julia.sh
+	
 	python install.py
 	
-	#load added bash_profile and bashrc variables and re source environment
-ifeq ($(UNAME_S),Darwin)
-	source ~/.bash_profile    
-else
-	source ~/.bashrc
-endif
-	
-	#install PyCall properly and install ReactionMechanismSimulator
-	julia install.jl
-	
-	#install julia-python modules
+	#install julia-python modules and link PyCall
 	python3 -m pip install julia
 	python -c "import julia; julia.install()"
+	
+	#install julia packages
+	julia install.jl
+	
 	pip install diffeqpy
 	python -c "import diffeqpy; diffeqpy.install()"
 	

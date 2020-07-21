@@ -11,4 +11,9 @@ def install():
     import diffeqpy
     julia.install()
     diffeqpy.install()
-    subprocess.check_call(['julia', '-e', '\"using Pkg; Pkg.add("ReactionMechanismSimulator"); using ReactionMechanismSimulator\"'])
+    from julia.api import Julia
+    jl = Julia(compiled_modules=False)
+    from julia import Pkg
+    Pkg.add("ReactionMechanismSimulator")
+    from julia import ReactionMechanismSimulator
+    

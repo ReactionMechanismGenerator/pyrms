@@ -11,15 +11,14 @@ In theory this wraps all functionality within RMS with two caveats:
 
 2) There are ways to define julia functions that makes them impossible to call from python using the pyjulia.  In most cases this is easy to fix.  If you find a case where this happens please make an issue.  
 
-## Installation Instructions:  
+## Installation Instructions from Anaconda:  
 
-Note:  
-  1) pyrms currently only supports python 2 so running `python` must open a python 2 kernel.  
-  2) Installing pyrms links/relinks your julia PyCall module to the python 2 being used.  
+Note: We recommend installing pyrms in its own conda environment when convenient because getting pyjulia to work with conda python efficiently currently requires relinking 
+      the python executable to the python-jl executable, this usually isn't problematic, but it can be an issue in more complicated conda environments. 
 
-To Install Run:  
+To Install Binaries with Conda Run:  
 ```
-git clone https://github.com/ReactionMechanismGenerator/pyrms.git
-cd pyrms
-make install
+conda install -c rmg pyrms
+python -c "import pyrms; pyrms.install()"
+ln -sfn $(which python-jl) $(which python)
 ```

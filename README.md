@@ -3,7 +3,7 @@
 [![Build status](https://img.shields.io/travis/ReactionMechanismGenerator/pyrms/master.svg)](https://travis-ci.org/ReactionMechanismGenerator/pyrms)
 [![codecov](https://codecov.io/gh/ReactionMechanismGenerator/pyrms/branch/master/graph/badge.svg)](https://codecov.io/gh/ReactionMechanismGenerator/pyrms)
 
-Python wrapper for the Reaction Mechanism Simulator (RMS) package for simulating and analyzing large chemical reaction mechanisms.  Currently only supports python 2.  
+Python wrapper for the Reaction Mechanism Simulator (RMS) package for simulating and analyzing large chemical reaction mechanisms. 
 
 In theory this wraps all functionality within RMS with two caveats:  
 

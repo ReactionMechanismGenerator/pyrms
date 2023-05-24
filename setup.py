@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyrms", # Replace with your own username
-    version="0.1.2",
+    version="1.0.2",
     author="mjohnson541",
     author_email="mjohnson541@gmail.com",
     description="",

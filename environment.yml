@@ -1,0 +1,15 @@
+name: pyrms_env
+channels:
+  - defaults
+  - mjohnson541
+  - conda-forge
+dependencies: 
+  - juliaup
+  - nose
+  - pyjuliacall
+  - rmgmolecule >= 0.3
+  - rdkit 
+  - pydot
+  - matplotlib
+  - numpy
+  - jupyter

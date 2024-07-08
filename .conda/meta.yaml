@@ -1,0 +1,42 @@
+#for conda build
+package:
+  name: pyrms
+  version: {{ environ.get('GIT_DESCRIBE_TAG', '') }}
+
+source:
+  path: ../
+
+build:
+  number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+  script_env:
+    - JULIAUP_DEPOT_PATH=$PREFIX/share/juliaup
+    - JULIA_DEPOT_PATH=$PREFIX/share/julia
+    - JULIA_CONDAPKG_ENV=$PREFIX
+
+requirements:
+  host:
+    - pyjuliacall
+    - rmgmolecule >=0.3
+    - rdkit >=2015.09.2
+    - setuptools
+    - juliaup
+    - numpy
+  run:
+    - pydot >=2.0
+    - yaml
+    - pyjuliacall
+    - rmgmolecule >=0.3
+    - rdkit >=2015.09.2
+    - juliaup
+    - jupyter
+    - matplotlib 
+    - nose
+test:
+  imports:
+    - pyrms
+  commands:
+    - nosetests pyrms/rmsTest.py # [unix]
+about:
+  home: http://github.com/ReactionMechanismGenerator/pyrms
+  license: MIT
+  summary: "A program for simulating and analyzing kinetic models of chemical reaction mechanisms."

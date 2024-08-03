@@ -9,7 +9,7 @@ dependencies:
   - pyjuliacall
   - rmgmolecule >= 0.3
   - rdkit 
-  - pydot
+  - pydot >= 2.0
   - matplotlib
   - numpy
   - jupyter
